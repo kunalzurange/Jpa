@@ -36,7 +36,7 @@ public class KunalCourse {
 	@OneToMany(mappedBy="course")
 	private List<KunalReview> reviews = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="courses")
 	private List<KunalStudent> students = new ArrayList<>();
 
 	

@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 
@@ -22,7 +24,11 @@ import javax.persistence.OneToOne;
 	@OneToOne(fetch=FetchType.LAZY)
 	private KunalPassport passport ;
 
-	@ManyToMany//(mappedBy="students")
+	@ManyToMany
+	@JoinTable(name="KunalStudent_KunalCourse",
+	joinColumns	= @JoinColumn(name="student_id"),
+	inverseJoinColumns = @JoinColumn(name="course_id"))
+	
 	private List<KunalCourse> courses = new ArrayList<>();
 
 	

@@ -185,4 +185,81 @@ Hibernate:
 */
 	
 	}
+	
+	@Test
+	@Transactional
+	public void retriveStudentAndCourses() {
+		KunalStudent student = em.find(KunalStudent.class,20001L);
+		//System.out.printf("student -> {}" + student);
+		//System.out.printf("courses -> {}" + student.getCourses());
+		
+		logger.info("student -> {}", student);
+		logger.info("courses -> {}", student.getCourses());
+/*
+  Hibernate: 
+
+		   select
+		        kunalstude0_.id as id1_3_0_,
+		        kunalstude0_.name as name2_3_0_,
+		        kunalstude0_.passport_id as passport3_3_0_ 
+		    from
+		        KunalStudent kunalstude0_ 
+		    where
+		        kunalstude0_.id=?
+2022-03-16 16:45:06.350 TRACE 424 --- [           main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [20001]
+2022-03-16 16:45:06.676 TRACE 424 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([name2_3_0_] : [VARCHAR]) - [ranga-updated]
+2022-03-16 16:45:06.677 TRACE 424 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([passport3_3_0_] : [BIGINT]) - [40001]
+2022-03-16 16:45:06.716 TRACE 424 --- [           main] org.hibernate.type.CollectionType        : Created collection wrapper: [com.jpa.hibernate.jpademo.KunalStudent.courses#20001]		
+*/	
+	}
+	
+	@Test
+	@Transactional
+	public void retriveCourseAndStudents() {
+		KunalCourse course = em.find(KunalCourse.class,10003L);
+		System.out.printf("course -> {}" + course);
+		System.out.printf("students -> {}" + course.getStudents());
+		//logger.info("course -> {}", course);
+		//logger.info("students -> {}", course.getStudents());
+
+/*
+		Hibernate: 
+		    select
+		        kunalcours0_.id as id1_0_0_,
+		        kunalcours0_.createdDate as createdd2_0_0_,
+		        kunalcours0_.lastUpdatedDate as lastupda3_0_0_,
+		        kunalcours0_.name as name4_0_0_ 
+		    from
+		        KunalCourse kunalcours0_ 
+		    where
+		        kunalcours0_.id=?
+2022-03-16 17:33:59.074 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [10003]
+2022-03-16 17:33:59.402 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([createdd2_0_0_] : [TIMESTAMP]) - [2022-03-15T12:42:14]
+2022-03-16 17:33:59.403 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([lastupda3_0_0_] : [TIMESTAMP]) - [2022-03-15T12:42:14]
+2022-03-16 17:33:59.405 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([name4_0_0_] : [VARCHAR]) - [spring boot in 100 steps]
+2022-03-16 17:33:59.433 TRACE 6016 --- [           main] org.hibernate.type.CollectionType        : Created collection wrapper: [com.jpa.hibernate.jpademo.KunalCourse.reviews#10003]
+2022-03-16 17:33:59.433 TRACE 6016 --- [           main] org.hibernate.type.CollectionType        : Created collection wrapper: [com.jpa.hibernate.jpademo.KunalCourse.students#10003]
+		course -> {}KunalCourse[spring boot in 100 steps]Hibernate: 
+		    select
+		        students0_.course_id as course_i2_4_0_,
+		        students0_.student_id as student_1_4_0_,
+		        kunalstude1_.id as id1_3_1_,
+		        kunalstude1_.name as name2_3_1_,
+		        kunalstude1_.passport_id as passport3_3_1_ 
+		    from
+		        KunalStudent_KunalCourse students0_ 
+		    inner join
+		        KunalStudent kunalstude1_ 
+		            on students0_.student_id=kunalstude1_.id 
+		    where
+		        students0_.course_id=?
+2022-03-16 17:33:59.444 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [10003]
+2022-03-16 17:33:59.754 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([id1_3_1_] : [BIGINT]) - [20001]
+2022-03-16 17:33:59.755 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([name2_3_1_] : [VARCHAR]) - [ranga-updated]
+2022-03-16 17:33:59.755 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([passport3_3_1_] : [BIGINT]) - [40001]
+2022-03-16 17:33:59.755 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([course_i2_4_0_] : [BIGINT]) - [10003]
+2022-03-16 17:33:59.756 TRACE 6016 --- [           main] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([student_1_4_0_] : [BIGINT]) - [20001]
+2022-03-16 17:33:59.756 TRACE 6016 --- [           main] org.hibernate.type.CollectionType        : Created collection wrapper: [com.jpa.hibernate.jpademo.KunalStudent.courses#20001]
+*/	
+	}	
 }	

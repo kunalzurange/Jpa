@@ -25,7 +25,33 @@ public class StudentRepository {
 
 	}
 	
+	public void insertHardcodedStudentAndCourse() {
+		KunalStudent student = new KunalStudent("Jack");
+		KunalCourse course = new KunalCourse("Microservices in 100 Steps");
+		em.persist(student);
+		em.persist(course);
+		
+		student.addCourses(course);
+		course.addStudent(student);
+		em.persist(student);
+		
+	}
+	
+	
+	public void insertStudentAndCourse(KunalStudent student, KunalCourse course) {
+		//KunalStudent student = new KunalStudent("Jack");
+		//KunalCourse course = new KunalCourse("Microservices in 100 Steps");
+		student.addCourses(course);
+		course.addStudent(student);
+		
+		em.persist(student);
+		em.persist(course);
+	}
+	
+	
+	
 	//private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	EntityManager em;
 	
@@ -41,7 +67,8 @@ public class StudentRepository {
 		}
 		return student;
 	}
-	
+
+/*
 	public void SaveStudentWithPassport() {
 		KunalPassport passport = new KunalPassport("Z123456");
 		em.persist(passport);
@@ -51,7 +78,7 @@ public class StudentRepository {
 	    student1.setPassport(passport);
 	    em.persist(student1);
 	}
-	
+*/	
 //	public void deleteById(Long id) {
 //		Kunal_Student student = findById(1003L);
 //		em.remove(student);
