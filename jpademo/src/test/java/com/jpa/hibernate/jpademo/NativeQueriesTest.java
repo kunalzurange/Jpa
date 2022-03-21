@@ -27,12 +27,12 @@ public class NativeQueriesTest {
 	@Autowired
 	EntityManager em;
 	
-	/*@Test
+	@Test
 	public void native_queries_basic() {
-		Query query = em.createNativeQuery("SELECT * FROM Kunal_Course", Kunal_Course.class);
+		Query query = em.createNativeQuery("SELECT * FROM Kunal_Course where is_deleted=0 ", KunalCourse.class);
 		List resultList = query.getResultList();
-		logger.info("SELECT * FROM Kunal_Course ->{}",resultList);
-	}*/
+		logger.info("SELECT * FROM KunalCourse ->{}",resultList);
+	}
 	/*
 	@Test
 	public void native_queries_with_parameter() {

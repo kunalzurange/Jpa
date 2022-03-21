@@ -1,5 +1,7 @@
 package com.jpa.hibernate.jpademo;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,7 +14,8 @@ import javax.persistence.ManyToOne;
 
 	private Long id;
 
-	private String rating;
+	@Enumerated(EnumType.STRING) 
+	private ReviewRating rating;
 
 	private String description;
 
@@ -23,7 +26,7 @@ import javax.persistence.ManyToOne;
 	protected KunalReview() {
 	}
 
-	public KunalReview(String rating,String description) {
+	public KunalReview(ReviewRating rating,String description) {
 		this.rating = rating;
 		this.description = description;
 	}
@@ -49,11 +52,11 @@ import javax.persistence.ManyToOne;
 	return id;
 	}
 
-	public String getRating() {
+	public ReviewRating getRating() {
 	return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(ReviewRating rating) {
 	this.rating = rating;
 	}
 

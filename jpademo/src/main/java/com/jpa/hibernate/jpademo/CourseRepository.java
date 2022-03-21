@@ -14,21 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CourseRepository {
 
-	//private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	//private static final String Long = null;
 	@Autowired
 	EntityManager em;
 	
 	public KunalCourse findById(Long id) {
-		return em.find(KunalCourse.class, id);
+		KunalCourse course = em.find(KunalCourse.class, id);
+		logger.info("Course -> {}", course);
+		return course;
 	}
 	
-	/*public void deletebyId(Long id) {
-		Kunal_Course course = findById(id);
+	public void deletebyId(Long id) {
+		KunalCourse course = findById(id);
 		em.remove(course);
 
-	}*/
+	}
 	
 	public KunalCourse save(KunalCourse course){
 		
@@ -80,13 +82,14 @@ public class CourseRepository {
 		
 		}
 
-	public void addHardcodedReviewsForCourse(Long courseId, List<KunalReview> reviews) {
+	public void addHardcodedReviewsForCourse() {
 		
-		//KunalCourse course = findById(10003L);
-		//System.out.println("course.getReviews() -> {}" + course.getReviews());   // get course 10003
+		KunalCourse course = findById(10003L);
+		System.out.println("course.getReviews() -> {}" + course.getReviews());   // get course 10003
 		
-	/*	KunalReview review1 = new KunalReview("5" , "Great Hands-on Stuff.");	//add 2 reviews to it
-		KunalReview review2 = new KunalReview("5" , "Hatsoff.");				
+		KunalReview review1 = new KunalReview(ReviewRating.FIVE, "Great Hands-on Stuff.");	//add 2 reviews to it
+		
+		KunalReview review2 = new KunalReview(ReviewRating.FIVE, "Hatsoff.");				
 	
 		course.addReviews(review1);
 		review1.setCourse(course);
@@ -96,7 +99,7 @@ public class CourseRepository {
 		
 		em.persist(review1);
 		em.persist(review2);													// save it to database
-		*/
+		
 	} 
 	
 	public void addReviewsForCourse(Long courseId, List<KunalReview> reviews) {
@@ -110,5 +113,10 @@ public class CourseRepository {
 			review.setCourse(course);
 			em.persist(review);
 		}*/
+	}
+
+	public void deleteById(long l) {
+		// TODO Auto-generated method stub
+		
 	}
 }

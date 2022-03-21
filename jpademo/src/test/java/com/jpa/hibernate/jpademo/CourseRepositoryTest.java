@@ -39,13 +39,12 @@ public class CourseRepositoryTest {
 	/*@Test
 	@DirtiesContext
 	public void deleteById_basic() {
-		
-		repository.deletebyId(10002L);
+		repository.deleteById(10002L);
 		assertNull(repository.findById(10002L));
 
 }*/
 	
-	@Test
+	/*@Test
 	@DirtiesContext
 	public void save_basic() {
 		 
@@ -63,21 +62,21 @@ public class CourseRepositoryTest {
 		assertEquals("arjun - Updated", course1.getName());
 		//repository.save(10002L);
 		//assertNull(repository.findById(10002L));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	@DirtiesContext
 	public void playWithEntityManager() {
 		repository.playWithEntityManager();
 		
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	@Transactional
 	public void retrieveReviewsForCourse() {
 		KunalCourse course = repository.findById(10001L);
 		logger.info("{}",course.getReviews()); 
-	}
+	}*/
 	
 	@Test
 	@Transactional

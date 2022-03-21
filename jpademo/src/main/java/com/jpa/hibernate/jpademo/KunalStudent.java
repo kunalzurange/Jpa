@@ -2,6 +2,8 @@ package com.jpa.hibernate.jpademo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,8 +21,12 @@ import javax.persistence.JoinColumn;
 
 	private Long id;
 
+	@Column(nullable = false)
 	private String name;
 
+	@Embedded
+	private KunalAddress address; 
+	
 	@OneToOne(fetch=FetchType.LAZY)
 	private KunalPassport passport ;
 
@@ -50,6 +56,14 @@ import javax.persistence.JoinColumn;
 	public void setName(String name) {
 	this.name = name;
 
+	}
+
+	public KunalAddress getAddress() {
+		return address;
+	}
+
+	public void setAddress(KunalAddress address) {
+		this.address = address;
 	}
 
 	public KunalPassport getPassport() {

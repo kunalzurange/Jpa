@@ -150,6 +150,18 @@ Hibernate:
 	@Test
 	@Transactional
 	
+	public void setAddressDetails() {
+		KunalStudent student = em.find(KunalStudent.class,20001L);
+		student.setAddress(new KunalAddress("No 101","Some Street","Hydrabad"));
+		em.flush();
+		logger.info("KunalStudent -> {}", student);
+		logger.info("KunalPassport -> {}", student.getPassport());
+	}
+	
+	
+	@Test
+	@Transactional
+	
 	public void retrivePassportAndAssociatedStudent() {
 		KunalPassport passport = em.find(KunalPassport.class,40001L);
 		logger.info("KunalPassport -> {}", passport);
