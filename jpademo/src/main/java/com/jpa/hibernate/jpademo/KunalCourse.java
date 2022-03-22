@@ -27,6 +27,8 @@ import org.slf4j.LoggerFactory;
 	
 		@NamedQuery(name="qurey_get_all_courses",
 				query="Select c from KunalCourse c")
+		@NamedQuery(name="qurey_get_all_courses_join_fetch",
+				query="Select c from KunalCourse c JOIN FETCH c.students s")
 		@NamedQuery(name="qurey_get_100_step_courses",
 				query="Select c from KunalCourse c where name like'%ajit'")
 
